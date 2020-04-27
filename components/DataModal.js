@@ -59,11 +59,6 @@ const DataModal = props => {
             </View>
 
             <View style={styles.dataWrapper}>
-              <Text style={styles.title}>Total tests: </Text>
-              <Text style={styles.data}>{props.selectedCountry.tests}</Text>
-            </View>
-
-            <View style={styles.dataWrapper}>
               <Text style={styles.title}>Active: </Text>
               <Text style={styles.data}>{props.selectedCountry.active}</Text>
             </View>
