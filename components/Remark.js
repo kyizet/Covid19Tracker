@@ -9,7 +9,9 @@ const Remark = props => {
       style={styles.caseBox}
       onPress={() => props.fetchData.bind(this)}>
       <View style={styles.alignCent}>
-        <Text style={styles.caseBoxTitle}>{props.title}</Text>
+        <Text style={{...styles.caseBoxTitle, ...props.styles}}>
+          {props.title}
+        </Text>
       </View>
 
       <View style={styles.alignCent}>
@@ -33,7 +35,6 @@ const styles = StyleSheet.create({
   caseBoxTitle: {
     fontWeight: 'bold',
     fontSize: 20,
-    color: Colors.secondary,
   },
   caseBoxResult: {
     fontSize: 25,

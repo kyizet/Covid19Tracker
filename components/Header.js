@@ -7,7 +7,6 @@ const Header = props => {
   return (
     <View style={styles.titleBG}>
       <Text style={styles.title}>Covid-19 Tracker</Text>
-      <Text style={styles.info}>Last updated: {props.lastUpdated} </Text>
     </View>
   );
 };
@@ -19,7 +18,7 @@ const styles = StyleSheet.create({
     paddingVertical: '5%',
     borderBottomWidth: 0.5,
     borderColor: Colors.primary,
-    marginBottom: '10%',
+    marginBottom: '5%',
   },
   title: {
     fontSize: 30,

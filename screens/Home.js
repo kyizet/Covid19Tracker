@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
-import axios from 'react-native-axios';
 
 /* Components */
 import Header from '../components/Header';
@@ -8,24 +7,46 @@ import Remark from '../components/Remark';
 
 const Home = () => {
   const [data, setData] = useState(0);
-  const [isLoading, setIsLoading] = useState();
 
   useEffect(() => {
-    console.log('BEFORE');
-    axios
-      .post('https://covid19.mathdro.id/api')
-      .then(response => console.log('THE RESPONSE: ' + response));
-    console.log('AFTER');
+    fetchData();
   }, []);
+
+  const fetchData = () => {
+    fetch('https://corona.lmao.ninja/v2/all')
+      .then(response => response.json())
+      .then(json => setData(json));
+  };
 
   return (
     <View>
-      <Header lastUpdated={data.lastUpdate} />
+      <Header lastUpdated={data.todayCases} />
       <ScrollView>
         <View style={styles.alignCent}>
-          <Remark title={'Confirmed Cases'} result={data.confirmed} />
-          <Remark title={'Deaths'} result={data.deaths} />
-          <Remark title={'Recovered'} result={data.recovered} />
+          <Remark
+            title={'Confirmed Cases'}
+            result={data.cases}
+            fetchData={fetchData}
+            styles={{color: '#136a8a'}}
+          />
+          <Remark
+            title={'Deaths'}
+            result={data.deaths}
+            fetchData={fetchData}
+            styles={{color: '#8a1313'}}
+          />
+          <Remark
+            title={'Recovered'}
+            result={data.recovered}
+            fetchData={fetchData}
+            styles={{color: '#138a49'}}
+          />
+          <Remark
+            title={'Active'}
+            result={data.active}
+            fetchData={fetchData}
+            styles={{color: '#138a49'}}
+          />
         </View>
       </ScrollView>
     </View>
@@ -34,28 +55,9 @@ const Home = () => {
 
 const styles = StyleSheet.create({
   alignCent: {
+    paddingTop: '5%',
     alignItems: 'center',
   },
 });
 
 export default Home;
-
-/**
- * 
- * 
-          <Remark
-            title={'Confirmed Cases'}
-            result={data.confirmed.value}
-            fetchData={fetchData}
-          />
-          <Remark
-            title={'Deaths'}
-            result={data.deaths.value}
-            fetchData={fetchData}
-          />
-          <Remark
-            title={'Recovered'}
-            result={data.recovered.value}
-            fetchData={fetchData}
-          />
- */

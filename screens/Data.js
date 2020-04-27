@@ -3,20 +3,25 @@ import {Text, View, ScrollView, StyleSheet} from 'react-native';
 
 import Header from '../components/Header';
 
+import DataTable from '../components/DataTable';
+
 const Data = () => {
   const [data, setData] = useState(0);
 
   useEffect(() => {
-    fetch('https://covid19.mathdro.id/api')
+    fetchData();
+  });
+
+  const fetchData = () => {
+    fetch('https://corona.lmao.ninja/v2/countries')
       .then(response => response.json())
       .then(json => setData(json));
-  });
+  };
+
   return (
     <View>
-      <Header lastUpdated={data.lastUpdate} />
-      <ScrollView>
-        <View style={styles.alignCent} />
-      </ScrollView>
+      <Header lastUpdated={data.todayCases} />
+      <DataTable data={data} />
     </View>
   );
 };

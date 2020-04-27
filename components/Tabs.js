@@ -2,8 +2,6 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import Colors from '../constants/Colors';
-
 /* Screens */
 import Home from '../screens/Home';
 import Data from '../screens/Data';
